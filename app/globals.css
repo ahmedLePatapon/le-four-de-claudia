@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-charbon: #323E40;
+  --color-or: #F2B138;
+  --color-orange-brule: #D96704;
+  --color-rouge-tomate: #D92B04;
+  --color-rouge-profond: #8C0303;
+  --color-creme: #FDF6EC;
+  --color-creme-dark: #F5E6CC;
+  --font-playfair: "Playfair Display", serif;
+  --font-dm: "DM Sans", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --background: #FDF6EC;
+  --foreground: #323E40;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1a1a;
+    --foreground: #FDF6EC;
   }
 }
 
+html.dark {
+  --background: #1a1a1a;
+  --foreground: #FDF6EC;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm);
+}
+
+/* Grain texture overlay */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FDF6EC; }
+::-webkit-scrollbar-thumb { background: #D96704; border-radius: 3px; }
+
+/* Hide horizontal scrollbar for filter */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prose styles for blog content */
+.prose-pizza h2 {
+  font-family: var(--font-playfair);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8C0303;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.dark .prose-pizza h2 {
+  color: #F2B138;
+}
+
+.prose-pizza p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  color: #323E40cc;
+}
+
+.dark .prose-pizza p {
+  color: #FDF6ECcc;
+}
+
+.prose-pizza ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-pizza li {
+  margin-bottom: 0.4rem;
+  line-height: 1.65;
+  color: #323E40cc;
+}
+
+.dark .prose-pizza li {
+  color: #FDF6ECcc;
+}
+
+.prose-pizza strong {
+  color: #323E40;
+  font-weight: 600;
+}
+
+.dark .prose-pizza strong {
+  color: #FDF6EC;
+}
+
+.prose-pizza blockquote {
+  border-left: 3px solid #D96704;
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  background: rgba(242,177,56,0.06);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.25rem;
+}
+
+.prose-pizza blockquote p {
+  font-style: italic;
+  color: #323E40;
+  margin-bottom: 0.25rem;
+}
+
+.dark .prose-pizza blockquote p {
+  color: #FDF6EC;
+}
+
+.prose-pizza blockquote cite {
+  font-size: 0.875rem;
+  color: #D96704;
+  font-style: normal;
+  font-weight: 500;
 }
