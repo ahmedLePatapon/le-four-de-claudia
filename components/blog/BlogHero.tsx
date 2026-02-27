@@ -1,48 +1,22 @@
-import Image from "next/image";
-
 export default function BlogHero() {
   return (
-    <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: "380px" }}>
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920"
-          alt="Le blog de Claudia"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+    <section className="relative bg-[#181211] pt-32 pb-20 overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[35%] h-[60%] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-[-5%] w-[25%] h-[40%] bg-orange-700/5 rounded-full blur-[100px]" />
       </div>
-
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 z-10"
-        style={{
-          background: "linear-gradient(135deg, rgba(50,62,64,0.92) 0%, rgba(50,62,64,0.75) 100%)",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-20 text-center px-4 py-20">
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-semibold uppercase tracking-widest"
-          style={{
-            background: "rgba(217,103,4,0.2)",
-            border: "1px solid rgba(217,103,4,0.4)",
-            color: "#F2B138",
-          }}
-        >
-          🍕 Savoir-faire &amp; traditions
+      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-xs font-bold uppercase tracking-widest border border-primary/30 text-primary bg-primary/10">
+          ✍️ Savoir-faire &amp; traditions
         </div>
         <h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-creme mb-4"
+          className="text-5xl sm:text-6xl font-black text-white mb-5 tracking-tight"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
-          Le Blog de Claudia
+          Le Journal
         </h1>
-        <p className="text-creme/65 text-lg max-w-xl mx-auto">
-          Techniques, traditions et secrets de cuisine italienne
+        <p className="text-slate-400 text-lg leading-relaxed">
+          Techniques, traditions et secrets de cuisine italienne partagés par Claudia.
         </p>
       </div>
     </section>

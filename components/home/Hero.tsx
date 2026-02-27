@@ -1,330 +1,108 @@
-"use client";
-
-import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-
-// Enhanced embers — more visible, more glow
-const embers = [
-  { size: 5, x: "15%", delay: 0, duration: 3.5, blur: 8 },
-  { size: 7, x: "65%", delay: 0.8, duration: 4.2, blur: 10 },
-  { size: 4, x: "40%", delay: 0.3, duration: 3.8, blur: 7 },
-  { size: 6, x: "80%", delay: 1.2, duration: 4.8, blur: 9 },
-  { size: 5, x: "25%", delay: 1.5, duration: 4.0, blur: 8 },
-  { size: 6, x: "55%", delay: 0.6, duration: 4.1, blur: 10 },
-  { size: 4, x: "75%", delay: 1.8, duration: 3.7, blur: 8 },
-  { size: 5, x: "35%", delay: 1.1, duration: 4.3, blur: 9 },
-];
+import Image from "next/image";
 
 export default function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
   return (
-    <section
-      ref={ref}
-      className="relative flex items-center justify-center overflow-hidden"
-      style={{ height: "100dvh" }}
-    >
-      {/* Background image with parallax */}
-      <motion.div
-        className="absolute inset-x-0 z-0"
-        style={{ y, top: "-10%", bottom: "-10%", height: "120%" }}
-      >
-        <Image
-          src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920"
-          alt="Pizza au feu de bois — Le Four de Claudia"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-      </motion.div>
-
-      {/* Radial glow overlay — fire in bottom right */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 600px 400px at 85% 90%, rgba(217,43,4,0.4) 0%, rgba(217,103,4,0.2) 30%, transparent 70%)",
-        }}
-      />
-
-      {/* Main dark overlay — left to transparent right */}
-      <div
-        className="absolute inset-0 z-10"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(50,62,64,0.92) 0%, rgba(50,62,64,0.75) 50%, rgba(50,62,64,0.35) 100%)",
-        }}
-      />
-
-      {/* Top-to-bottom gradient */}
-      <div
-        className="absolute inset-0 z-10"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(50,62,64,0.85) 0%, transparent 50%)",
-        }}
-      />
-
-      {/* Animated glow behind content */}
-      <motion.div
-        className="absolute inset-0 z-15 pointer-events-none"
-        animate={{
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        style={{
-          background:
-            "radial-gradient(ellipse 400px 300px at 50% 45%, rgba(217,43,4,0.2) 0%, transparent 70%)",
-        }}
-      />
-
-      {/* Floating embers — enhanced */}
-      <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
-        {embers.map((ember, i) => (
-          <motion.div
-            key={i}
-            className="absolute bottom-0 rounded-full"
-            animate={{
-              opacity: [0.6, 0.9, 0.6],
-            }}
-            transition={{ duration: 2 + Math.random() * 1, repeat: Infinity, ease: "easeInOut" }}
-            style={{
-              left: ember.x,
-              width: ember.size,
-              height: ember.size,
-              backgroundColor: "#F2B138",
-              boxShadow: `0 0 ${ember.blur}px #D92B04, 0 0 ${ember.blur * 1.5}px rgba(217,43,4,0.6)`,
-            }}
-            onAnimationStart={() => {
-              const el = document.querySelector(`[style*="left: ${ember.x}"]`) as HTMLElement;
-              if (el) {
-                (el as any).style.animation = `float-up ${ember.duration}s ease-in ${ember.delay}s infinite`;
-              }
-            }}
-          />
-        ))}
+    <section className="relative flex items-center min-h-screen w-full overflow-hidden bg-[#181211]">
+      {/* Background decorative blobs */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-orange-600/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-30 text-center px-4 sm:px-8 max-w-4xl mx-auto">
-        
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm font-medium"
-          style={{
-            background: "rgba(217,43,4,0.3)",
-            border: "1px solid rgba(242,177,56,0.5)",
-            color: "#F2B138",
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <motion.span
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            🔥
-          </motion.span>
-          <span>Tradition depuis 1998</span>
-        </motion.div>
-
-        {/* Main headline — split with gradient */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25, type: "spring", stiffness: 80, damping: 20 }}
-        >
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-1"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            <span className="text-white">Pizza au</span>
-            <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #D92B04 0%, #D96704 50%, #F2B138 100%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                fontSize: "inherit",
-                fontWeight: "inherit",
-              }}
-            >
-              feu de bois
-            </span>
-          </h1>
-        </motion.div>
-
-        {/* Highlighted stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-4 sm:gap-8 my-6 flex-wrap"
-        >
-          <div className="flex items-center gap-1.5">
-            <span className="text-lg">⏱️</span>
-            <span className="text-creme/80">
-              <span style={{ color: "#F2B138", fontWeight: "bold" }}>90 secondes</span>
-            </span>
-          </div>
-          <div className="w-px h-6 bg-creme/20 hidden sm:block" />
-          <div className="flex items-center gap-1.5">
-            <span className="text-lg">🌡️</span>
-            <span className="text-creme/80">
-              <span style={{ color: "#F2B138", fontWeight: "bold" }}>400°C</span>
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-lg sm:text-xl text-creme/70 mb-10 max-w-xl mx-auto"
-          style={{ fontFamily: "var(--font-dm)" }}
-        >
-          Tradition italienne &amp; produits frais du marché.
-          <br className="hidden sm:block" />
-          Cuisson à 400°C en 90 secondes.
-        </motion.p>
-
-        {/* Info badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex items-center justify-center gap-4 sm:gap-6 mb-8 flex-wrap"
-        >
-          {[
-            { icon: "🔥", text: "Tradition" },
-            { icon: "🌾", text: "Farine Tipo 00" },
-            { icon: "🫒", text: "Produits frais" },
-          ].map((item) => (
-            <div
-              key={item.text}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold"
-              style={{
-                background: "rgba(242,177,56,0.1)",
-                border: "1px solid rgba(242,177,56,0.3)",
-                color: "#F2B138",
-              }}
-            >
-              <span>{item.icon}</span>
-              <span>{item.text}</span>
+      <div className="relative z-10 w-full flex flex-col lg:flex-row">
+        {/* Left: Content */}
+        <div className="flex-1 flex flex-col justify-center px-8 py-16 lg:pl-16 lg:pr-12 xl:pl-32 xl:pr-16 z-20">
+          <div className="max-w-2xl">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 mb-6">
+              <span className="h-px w-8 bg-primary" />
+              <span className="text-primary font-bold uppercase tracking-widest text-xs">Depuis 1998</span>
             </div>
-          ))}
-        </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Link
-            href="/carte"
-            className="group relative px-8 py-3.5 rounded-full font-semibold text-white text-base transition-all duration-300 overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #D92B04 0%, #D96704 100%)",
-            }}
-          >
-            <motion.div
-              className="absolute inset-0 pointer-events-none rounded-full"
-              animate={{
-                opacity: [0, 0.5, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              style={{
-                background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)",
-              }}
-            />
-            <span className="relative flex items-center gap-2 group-hover:scale-105 transition-transform">
-              Voir la carte
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="group-hover:translate-x-1 transition-transform"
+            {/* Title */}
+            <h1 className="text-white text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-8">
+              L'Art de la{" "}
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">
+                Pizza Artisanale
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-slate-300 text-lg sm:text-xl font-normal leading-relaxed mb-10 max-w-lg border-l-2 border-slate-700 pl-6">
+              Pâte à fermentation longue de 72h, ingrédients frais sélectionnés au marché,
+              cuite au feu de bois à 400°C pour une expérience inoubliable.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 items-center">
+              <Link
+                href="/carte"
+                className="group flex items-center justify-center gap-2 h-14 px-8 bg-primary hover:bg-red-600 text-white text-base font-bold rounded-full transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1"
               >
-                <polyline points="9 18 15 12 9 6" />
+                <span>Commander Maintenant</span>
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link
+                href="/carte"
+                className="flex items-center justify-center h-14 px-8 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30 text-base font-bold rounded-full transition-all backdrop-blur-sm"
+              >
+                Découvrir le Menu
+              </Link>
+            </div>
+
+            {/* Trust badges */}
+            <div className="mt-16 flex items-center gap-8 text-slate-400 flex-wrap">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 2a8 8 0 100 16A8 8 0 0012 4z"/>
+                </svg>
+                <span className="text-sm font-medium">Cuisson au feu de bois</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+                <span className="text-sm font-medium">Ingrédients Bio</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-sm font-medium">72h Fermentation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Image */}
+        <div className="lg:w-1/2 xl:w-[55%] relative h-[50vh] lg:h-screen lg:absolute lg:right-0 lg:top-0 w-full overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#181211]/80 via-transparent to-[#181211] lg:bg-gradient-to-r lg:from-[#181211] lg:via-[#181211]/20 lg:to-transparent z-10 pointer-events-none" />
+          <Image
+            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920"
+            alt="Pizza au feu de bois — Le Four de Claudia"
+            fill
+            priority
+            className="object-cover object-center opacity-90"
+            sizes="(max-width: 1024px) 100vw, 55vw"
+          />
+          {/* Floating badge */}
+          <div className="absolute bottom-10 right-10 z-20 hidden lg:flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-2xl">
+            <div className="bg-primary rounded-full p-2 text-white">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
               </svg>
-            </span>
-          </Link>
-          <Link
-            href="/#about"
-            className="px-8 py-3.5 rounded-full font-semibold text-creme text-base border-2 border-creme/50 hover:border-creme hover:bg-creme/5 transition-all duration-300"
-          >
-            Notre histoire
-          </Link>
-        </motion.div>
+            </div>
+            <div>
+              <p className="text-white font-bold text-sm">Élue Meilleure Pizza</p>
+              <p className="text-slate-300 text-xs">Guide Gastronomique 2024</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* Scroll arrow with pulse */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1"
-        >
-          <span className="text-xs uppercase tracking-widest mb-1" style={{ color: "#F2B138" }}>
-            Défiler
-          </span>
-          <motion.svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ color: "#F2B138" }}
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <polyline points="6 9 12 15 18 9" />
-          </motion.svg>
-        </motion.div>
-      </motion.div>
-
-      {/* Ember float animation */}
-      <style jsx>{`
-        @keyframes float-up {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 0.6;
-          }
-          50% {
-            opacity: 0.9;
-          }
-          100% {
-            transform: translateY(-100vh) scale(0.3);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </section>
   );
 }

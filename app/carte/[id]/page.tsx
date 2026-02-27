@@ -105,196 +105,188 @@ export default async function PizzaDetailPage({ params }: Props) {
   const catSlug = pizza.categorie.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <>
-      {/* ── Hero ── */}
-      <section className="relative h-[50vh] min-h-[340px] flex items-end overflow-hidden">
-        <Image
-          src={image}
-          alt={pizza.nom}
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div className="min-h-screen bg-[#181211]">
+      {/* Background blobs */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-orange-600/5 rounded-full blur-[100px]" />
+      </div>
+
+      <main className="relative z-10 flex-1 flex flex-col pt-28 pb-16">
+        <div className="px-6 lg:px-16 xl:px-32 w-full max-w-[1600px] mx-auto">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-creme/50 text-sm mb-4">
-            <a href="/" className="hover:text-creme transition-colors">Accueil</a>
+          <nav className="flex items-center gap-2 text-slate-500 text-sm mb-8">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
             <span>/</span>
-            <a href="/carte" className="hover:text-creme transition-colors">La Carte</a>
+            <Link href="/carte" className="hover:text-white transition-colors">Menu</Link>
             <span>/</span>
-            <span className="text-creme font-medium">{pizza.nom}</span>
+            <span className="text-slate-300">{pizza.nom}</span>
           </nav>
-          <div className="flex items-end gap-4 flex-wrap">
-            <div>
-              {pizza.categorie === "Nouveauté" && (
-                <span className="inline-block mb-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-orange-brule">
-                  NOUVEAU ✨
-                </span>
-              )}
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
+
+          {/* Two-column layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-20">
+            {/* Left: Image */}
+            <div className="relative w-full h-fit">
+              <div className="relative aspect-[4/5] lg:aspect-square w-full rounded-2xl overflow-hidden bg-[#231a19] shadow-2xl border border-white/5">
+                <Image
+                  src={image}
+                  alt={pizza.nom}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                {pizza.categorie === "Nouveauté" && (
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="px-4 py-2 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">Nouveauté</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right: Info */}
+            <div className="flex flex-col justify-start pt-4">
+              <div className="mb-2 flex items-center gap-2">
+                {[1,2,3,4].map((i) => (
+                  <svg key={i} className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
+                <svg className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1v9.3z"/>
+                </svg>
+                <span className="text-slate-400 text-sm ml-2">(avis clients)</span>
+              </div>
+
+              <h1 className="text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight">
                 {pizza.nom}
               </h1>
-              <p className="text-creme/60 text-sm mt-1">{pizza.categorie}</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ── Content ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="lg:grid lg:grid-cols-3 lg:gap-12">
-
-          {/* Left: main content */}
-          <div className="lg:col-span-2 space-y-10">
-
-            {/* Ingredients badges */}
-            <div>
-              <h2
-                className="text-xl font-bold text-charbon dark:text-creme mb-4"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Composition
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {ingredients.map((ing) => (
-                  <span
-                    key={ing}
-                    className="px-3 py-1.5 rounded-full text-sm font-medium bg-or/10 text-orange-brule border border-or/20 dark:bg-or/15"
-                  >
-                    {ing}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Enriched description */}
-            <div>
-              <h2
-                className="text-xl font-bold text-charbon dark:text-creme mb-4"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Le mot de Claudia
-              </h2>
-              <p className="text-charbon/70 dark:text-creme/65 leading-relaxed text-base">
-                {enrichedDesc}
-              </p>
-            </div>
-
-            {/* Our commitments */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[
-                { icon: "🌾", title: "Farine Tipo 00", desc: "Fermentée 48h" },
-                { icon: "🔥", title: "Four à bois 400°C", desc: "Cuisson en 90 sec" },
-                { icon: "🫒", title: "Produits frais", desc: "Marché 2×/semaine" },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="flex flex-col items-center text-center p-4 rounded-2xl bg-creme-dark dark:bg-charbon/40 border border-charbon/8 dark:border-creme/8"
-                >
-                  <span className="text-2xl mb-2">{item.icon}</span>
-                  <span className="font-semibold text-charbon dark:text-creme text-sm">{item.title}</span>
-                  <span className="text-xs text-charbon/50 dark:text-creme/50 mt-0.5">{item.desc}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: pricing card */}
-          <div className="mt-10 lg:mt-0">
-            <div className="sticky top-28 rounded-2xl border border-charbon/10 dark:border-creme/10 bg-white dark:bg-charbon/50 shadow-lg overflow-hidden">
-              {/* Header */}
-              <div className="px-6 py-5 border-b border-charbon/8 dark:border-creme/8"
-                style={{ background: "linear-gradient(135deg, #323E40, #1a2224)" }}>
-                <h3
-                  className="text-lg font-bold text-creme"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  {pizza.nom}
-                </h3>
-                <p className="text-creme/50 text-xs mt-1">{pizza.categorie}</p>
-              </div>
-
-              {/* Sizes */}
               {availableSizes.length > 0 && (
-                <div className="p-4 space-y-3">
-                  {availableSizes.map((size) => (
-                    <div
-                      key={size.key}
-                      className="flex items-center justify-between p-3 rounded-xl bg-charbon/4 dark:bg-creme/5"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="w-3 h-3 rounded-full shrink-0" style={{ background: size.color }} />
-                        <div>
-                          <p className="font-semibold text-charbon dark:text-creme text-sm">{size.label}</p>
-                          <p className="text-[11px] text-charbon/45 dark:text-creme/45">{size.dim} · {size.desc}</p>
-                        </div>
-                      </div>
-                      <span
-                        className="font-bold text-base tabular-nums ml-3"
-                        style={{ color: size.color }}
-                      >
-                        {formatPrice(pizza.prix[size.key]!)}
-                      </span>
-                    </div>
-                  ))}
+                <p className="text-2xl font-bold text-primary mb-6">
+                  {formatPrice(pizza.prix[availableSizes[0].key]!)}
+                </p>
+              )}
 
-                  {/* Generic prices (boissons, formules…) */}
-                  {(["37.5cl", "75cl", "unite"] as const)
-                    .filter((k) => pizza.prix[k] !== undefined)
-                    .map((k) => {
+              <div className="text-slate-300 mb-8 border-l-2 border-primary/50 pl-6">
+                <p>{pizza.description}</p>
+                {enrichedDesc && (
+                  <p className="text-sm mt-4 text-slate-400">
+                    <strong className="text-slate-200">Le secret :</strong>{" "}
+                    Notre pâte au levain naturel fermente pendant 72 heures avant d&apos;être cuite à 450°C dans notre four à bois.
+                  </p>
+                )}
+              </div>
+
+              {/* Size selection */}
+              {availableSizes.length > 1 && (
+                <div className="mb-8">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Votre Taille</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {availableSizes.map((size, i) => (
+                      <div
+                        key={size.key}
+                        className={`px-5 py-3 rounded-xl bg-[#231a19] border text-slate-300 flex items-center gap-2 ${i === 1 ? "border-primary text-white bg-primary/10" : "border-white/10"}`}
+                      >
+                        <span className="w-3 h-3 rounded-full" style={{ background: size.color }} />
+                        <span>{size.label}</span>
+                        <span className="text-slate-500 text-sm">· {formatPrice(pizza.prix[size.key]!)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Generic prices */}
+              {(["37.5cl", "75cl", "unite"] as const).filter((k) => pizza.prix[k] !== undefined).length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Tarif</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {(["37.5cl", "75cl", "unite"] as const).filter((k) => pizza.prix[k] !== undefined).map((k) => {
                       const labels: Record<string, string> = { "37.5cl": "37,5 cl", "75cl": "75 cl", unite: "À l'unité" };
                       return (
-                        <div key={k} className="flex items-center justify-between p-3 rounded-xl bg-charbon/4 dark:bg-creme/5">
-                          <span className="font-medium text-charbon dark:text-creme text-sm">{labels[k]}</span>
-                          <span className="font-bold text-base text-orange-brule tabular-nums">{formatPrice(pizza.prix[k]!)}</span>
+                        <div key={k} className="px-5 py-3 rounded-xl bg-[#231a19] border border-white/10 text-slate-300 flex items-center gap-2">
+                          <span>{labels[k]}</span>
+                          <span className="text-primary font-bold">{formatPrice(pizza.prix[k]!)}</span>
                         </div>
                       );
                     })}
+                  </div>
                 </div>
               )}
 
-              {/* Back link */}
-              <div className="px-4 pb-4">
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Link
+                  href="/carte"
+                  className="flex-1 flex items-center justify-center gap-2 h-12 px-8 bg-primary hover:bg-red-600 text-white text-base font-bold rounded-full transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1"
+                >
+                  <span>Voir toute la carte</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
                 <Link
                   href={`/carte#${catSlug}`}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 text-charbon/60 dark:text-creme/60 hover:text-rouge-tomate hover:bg-rouge-tomate/8 border border-charbon/10 dark:border-creme/10"
+                  className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-slate-400 hover:text-primary hover:border-primary/50 transition-colors"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6" />
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
-                  Retour à la carte
                 </Link>
+              </div>
+
+              {/* Info badges */}
+              <div className="border-t border-white/10 pt-6">
+                <div className="flex flex-wrap gap-y-2 gap-x-6 text-xs text-slate-500 font-medium">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Ingrédients 100% frais</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                    </svg>
+                    <span>Cuisson au feu de bois 400°C</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Pâte fermentée 72h</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ── Similar pizzas ── */}
-        {similar.length > 0 && (
-          <section className="mt-16 pt-12 border-t border-charbon/10 dark:border-creme/10">
-            <h2
-              className="text-2xl font-bold text-charbon dark:text-creme mb-6"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Dans la même catégorie
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {similar.map((p) => (
-                <Link key={p.id} href={`/carte/${p.id}`} className="block group">
-                  <div className="transition-transform duration-200 group-hover:-translate-y-1">
-                    <PizzaCard pizza={p} />
-                  </div>
+          {/* Similar pizzas */}
+          {similar.length > 0 && (
+            <div className="mt-24">
+              <div className="flex items-center justify-between mb-10">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">Vous aimerez aussi</h2>
+                <Link href="/carte" className="text-primary hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group">
+                  Voir tout le menu
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-              ))}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {similar.map((p) => (
+                  <Link key={p.id} href={`/carte/${p.id}`} className="block group">
+                    <div className="transition-transform duration-200 group-hover:-translate-y-1">
+                      <PizzaCard pizza={p} />
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </section>
-        )}
-      </div>
-    </>
+          )}
+        </div>
+      </main>
+    </div>
   );
 }

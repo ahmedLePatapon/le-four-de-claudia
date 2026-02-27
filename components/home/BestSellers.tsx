@@ -13,36 +13,32 @@ export default function BestSellers() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: "#323E40" }}>
+    <section className="py-20 lg:py-28 bg-[#231b1a]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-14">
-          <motion.div
+        <div className="text-center mb-12">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-4"
-            style={{ color: "#D96704" }}
+            className="text-accent-gold uppercase tracking-[0.2em] text-xs font-bold mb-3"
           >
-            <span className="w-8 h-px bg-orange-brule" />
-            Les incontournables
-            <span className="w-8 h-px bg-orange-brule" />
-          </motion.div>
+            La Carte
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 25 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-            style={{ fontFamily: "var(--font-playfair)", color: "#F2B138" }}
+            className="text-4xl md:text-5xl font-black text-white mb-6"
           >
-            Nos meilleures pizzas
+            Nos Créations Artisanales
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="text-creme/60 max-w-xl mx-auto"
+            className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base"
           >
-            Sélectionnées par nos clients fidèles, ces pizzas reviennent semaine après semaine sur nos tables.
+            Des recettes authentiques élaborées avec passion. Chaque ingrédient est sélectionné rigoureusement.
           </motion.p>
         </div>
 
@@ -71,11 +67,7 @@ export default function BestSellers() {
         >
           <Link
             href="/carte"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            style={{
-              background: "linear-gradient(135deg, #D92B04, #D96704)",
-              boxShadow: "0 4px 20px rgba(217,43,4,0.3)",
-            }}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-white bg-primary hover:bg-red-600 transition-all duration-300 hover:-translate-y-1 shadow-xl shadow-primary/20"
           >
             Voir toute la carte
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

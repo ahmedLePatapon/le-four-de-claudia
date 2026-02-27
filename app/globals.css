@@ -1,49 +1,38 @@
 @import "tailwindcss";
 
 @theme {
+  /* Design system — dark moody */
+  --color-primary: #ee3b2b;
+  --color-primary-dark: #c73223;
+  --color-accent-gold: #d4af37;
+  --color-bg-dark: #181211;
+  --color-card-dark: #231b1a;
+  --color-surface-dark: #2a1f1e;
+  --color-terracotta: #c65d47;
+
+  /* Legacy aliases kept for compatibility */
   --color-charbon: #323E40;
-  --color-or: #F2B138;
-  --color-orange-brule: #D96704;
-  --color-rouge-tomate: #D92B04;
+  --color-or: #d4af37;
+  --color-orange-brule: #e07a5f;
+  --color-rouge-tomate: #ee3b2b;
   --color-rouge-profond: #8C0303;
-  --color-creme: #FDF6EC;
-  --color-creme-dark: #F5E6CC;
+  --color-creme: #f0ebe8;
+  --color-creme-dark: #e8e0db;
+
   --font-playfair: "Playfair Display", serif;
-  --font-dm: "DM Sans", sans-serif;
+  --font-display: "Be Vietnam Pro", "Noto Sans", sans-serif;
+  --font-dm: "Be Vietnam Pro", "Noto Sans", sans-serif;
 }
 
 :root {
-  --background: #FDF6EC;
-  --foreground: #323E40;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a1a1a;
-    --foreground: #FDF6EC;
-  }
-}
-
-html.dark {
-  --background: #1a1a1a;
-  --foreground: #FDF6EC;
+  --background: #181211;
+  --foreground: #f0ebe8;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-dm);
-}
-
-/* Grain texture overlay */
-.grain-overlay::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.03;
+  font-family: var(--font-display);
 }
 
 /* Smooth scrolling */
@@ -52,11 +41,12 @@ html {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #FDF6EC; }
-::-webkit-scrollbar-thumb { background: #D96704; border-radius: 3px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #181211; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #ee3b2b; }
 
-/* Hide horizontal scrollbar for filter */
+/* Hide horizontal scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -65,28 +55,24 @@ html {
   display: none;
 }
 
+/* No-scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* Prose styles for blog content */
 .prose-pizza h2 {
   font-family: var(--font-playfair);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #8C0303;
+  color: #ee3b2b;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
-}
-
-.dark .prose-pizza h2 {
-  color: #F2B138;
 }
 
 .prose-pizza p {
   margin-bottom: 1rem;
   line-height: 1.75;
-  color: #323E40cc;
-}
-
-.dark .prose-pizza p {
-  color: #FDF6ECcc;
+  color: rgba(240, 235, 232, 0.8);
 }
 
 .prose-pizza ul {
@@ -98,44 +84,31 @@ html {
 .prose-pizza li {
   margin-bottom: 0.4rem;
   line-height: 1.65;
-  color: #323E40cc;
-}
-
-.dark .prose-pizza li {
-  color: #FDF6ECcc;
+  color: rgba(240, 235, 232, 0.8);
 }
 
 .prose-pizza strong {
-  color: #323E40;
+  color: #f0ebe8;
   font-weight: 600;
 }
 
-.dark .prose-pizza strong {
-  color: #FDF6EC;
-}
-
 .prose-pizza blockquote {
-  border-left: 3px solid #D96704;
-  padding-left: 1.25rem;
+  border-left: 3px solid #ee3b2b;
   margin: 1.5rem 0;
-  background: rgba(242,177,56,0.06);
+  background: rgba(238, 59, 43, 0.05);
   border-radius: 0 0.5rem 0.5rem 0;
   padding: 1rem 1.25rem;
 }
 
 .prose-pizza blockquote p {
   font-style: italic;
-  color: #323E40;
+  color: #f0ebe8;
   margin-bottom: 0.25rem;
-}
-
-.dark .prose-pizza blockquote p {
-  color: #FDF6EC;
 }
 
 .prose-pizza blockquote cite {
   font-size: 0.875rem;
-  color: #D96704;
+  color: #ee3b2b;
   font-style: normal;
   font-weight: 500;
 }

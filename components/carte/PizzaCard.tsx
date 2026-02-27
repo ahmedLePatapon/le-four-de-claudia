@@ -54,114 +54,85 @@ export default function PizzaCard({ pizza, featured = false }: PizzaCardProps) {
     <motion.article
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 350, damping: 28 }}
-      className={cn(
-        "group flex flex-col rounded-2xl overflow-hidden border transition-shadow duration-300",
-        "bg-white dark:bg-charbon/50",
-        "border-charbon/8 dark:border-creme/8",
-        "shadow-sm hover:shadow-xl hover:shadow-charbon/10 dark:hover:shadow-black/30"
-      )}
+      className="group flex flex-col rounded-xl overflow-hidden border border-white/5 bg-[#231b1a] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full"
     >
       {/* Image */}
-      <div className={cn("relative overflow-hidden shrink-0", featured ? "h-44" : "h-36")}>
+      <div className={cn("relative overflow-hidden shrink-0", featured ? "h-56" : "h-48")}>
         <Image
           src={imgSrc}
           alt={pizza.nom}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
         {pizza.categorie === "Nouveauté" && (
-          <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full text-[11px] font-bold text-white bg-orange-brule shadow">
-            NOUVEAU ✨
+          <span className="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded text-xs font-bold flex items-center gap-1 shadow-md">
+            ✨ Nouveau
           </span>
         )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-4 gap-3">
-        {/* Name + description */}
+      <div className="flex flex-col flex-1 p-6 gap-3">
         <div>
-          <h3
-            className="font-bold text-charbon dark:text-creme text-[1.05rem] leading-snug mb-1"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            {pizza.nom}
-          </h3>
-          <p className="text-xs text-charbon/55 dark:text-creme/50 line-clamp-2 leading-relaxed">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="text-xl font-bold text-white">
+              {pizza.nom}
+            </h3>
+            {availableSizes.length > 0 && (
+              <span className="text-lg font-bold text-primary ml-2 shrink-0">
+                {formatPrice(pizza.prix[availableSizes[0].key]!)}
+              </span>
+            )}
+            {isGenericPricing && genericKeys[0] && (
+              <span className="text-lg font-bold text-primary ml-2 shrink-0">
+                {formatPrice(pizza.prix[genericKeys[0]]!)}
+              </span>
+            )}
+          </div>
+          <p className="text-slate-400 text-sm mb-6 flex-grow line-clamp-2">
             {pizza.description}
           </p>
         </div>
 
-        {/* Prices — pushed to bottom */}
-        <div className="mt-auto">
-          {isGenericPricing ? (
-            // Generic pricing (boissons, formules, suppléments)
-            <div className="flex flex-wrap gap-2 pt-3 border-t border-charbon/8 dark:border-creme/8">
-              {genericKeys.map((k) => (
+        {/* Sizes */}
+        {!isGenericPricing && availableSizes.length > 1 && (
+          <div className="flex gap-2 mt-auto pt-3 border-t border-white/5">
+            {SIZE_CONFIG.map((s) => {
+              const price = pizza.prix[s.key];
+              if (price === undefined) return null;
+              return (
                 <div
-                  key={k}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-or/10 dark:bg-or/15"
-                >
-                  {genericKeys.length > 1 && (
-                    <span className="text-[11px] font-medium text-charbon/50 dark:text-creme/50 uppercase tracking-wide">
-                      {PRIX_LABELS[k]}
-                    </span>
+                  key={s.key}
+                  className={cn(
+                    "flex-1 flex flex-col items-center rounded-lg py-2 px-1",
+                    s.highlight ? "bg-primary/10 ring-1 ring-primary/20" : "bg-white/5"
                   )}
-                  <span className="font-bold text-sm text-orange-brule">
-                    {formatPrice(pizza.prix[k]!)}
+                >
+                  <span className={cn("text-[10px] font-semibold uppercase tracking-wide mb-0.5", s.highlight ? "text-primary" : "text-slate-500")}>
+                    {s.label}
+                  </span>
+                  <span className={cn("font-bold text-sm tabular-nums", s.highlight ? "text-primary" : "text-slate-300")}>
+                    {formatPrice(price)}
                   </span>
                 </div>
-              ))}
-            </div>
-          ) : availableSizes.length === 1 ? (
-            // Single price (e.g. Nutella)
-            <div className="flex items-center justify-between pt-3 border-t border-charbon/8 dark:border-creme/8">
-              <span className="text-xs uppercase tracking-wide text-charbon/40 dark:text-creme/40 font-medium">
-                {availableSizes[0].label}
-              </span>
-              <span className="font-bold text-rouge-tomate text-base">
-                {formatPrice(pizza.prix[availableSizes[0].key]!)}
-              </span>
-            </div>
-          ) : (
-            // Multiple sizes
-            <div className="flex gap-1.5 pt-3 border-t border-charbon/8 dark:border-creme/8">
-              {SIZE_CONFIG.map((s) => {
-                const price = pizza.prix[s.key];
-                if (price === undefined) return null;
-                return (
-                  <div
-                    key={s.key}
-                    className={cn(
-                      "flex-1 flex flex-col items-center rounded-xl py-2 px-1 transition-colors",
-                      s.highlight
-                        ? "bg-rouge-tomate/8 ring-1 ring-rouge-tomate/20 dark:bg-rouge-tomate/15"
-                        : "bg-charbon/4 dark:bg-creme/5"
-                    )}
-                  >
-                    {/* Size dot + label */}
-                    <div className="flex items-center gap-1 mb-1">
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: s.dot }} />
-                      <span className={cn(
-                        "text-[10px] font-semibold uppercase tracking-wide",
-                        s.highlight ? "text-rouge-tomate" : "text-charbon/45 dark:text-creme/40"
-                      )}>
-                        {s.label}
-                      </span>
-                    </div>
-                    <span className={cn(
-                      "font-bold text-sm tabular-nums",
-                      s.highlight ? "text-rouge-tomate" : "text-charbon dark:text-creme"
-                    )}>
-                      {formatPrice(price)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+              );
+            })}
+          </div>
+        )}
+
+        {isGenericPricing && (
+          <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-white/5">
+            {genericKeys.map((k) => (
+              <div key={k} className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5">
+                {genericKeys.length > 1 && (
+                  <span className="text-[11px] font-medium text-slate-500 uppercase tracking-wide">{PRIX_LABELS[k]}</span>
+                )}
+                <span className="font-bold text-sm text-primary">{formatPrice(pizza.prix[k]!)}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.article>
   );

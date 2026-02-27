@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -11,9 +10,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
-  variable: "--font-dm",
+  weight: ["400", "500", "700", "900"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -37,15 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <body className={`${playfair.variable} ${dmSans.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <div className="grain-overlay">
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+    <html lang="fr" className="dark">
+      <body className={`${playfair.variable} ${beVietnamPro.variable}`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
