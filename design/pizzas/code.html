@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wahou Pizzeria - Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee3b2b",
+                        "accent-gold": "#d4af37",
+                        "accent-terracotta": "#e07a5f",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#181211",
+                        "card-dark": "#231b1a",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181211; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ee3b2b; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden fixed">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-orange-600/5 rounded-full blur-[100px]"></div>
+</div>
+<div class="layout-container flex h-full grow flex-col z-10">
+<header class="sticky top-0 w-full z-50 flex items-center justify-between whitespace-nowrap px-8 py-4 lg:px-16 bg-background-dark/80 backdrop-blur-md border-b border-white/5">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">local_pizza</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Wahou Pizzeria</h2>
+</div>
+<nav class="hidden lg:flex flex-1 justify-center gap-10">
+<a class="text-white underline decoration-primary underline-offset-4 decoration-2 text-sm font-bold transition-colors" href="#">Menu</a>
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">L'Histoire</a>
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">Réservations</a>
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">Contact</a>
+</nav>
+<div class="hidden sm:flex items-center justify-end gap-4">
+<div class="relative group">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+</button>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">2</span>
+</div>
+<button class="lg:hidden text-white ml-4">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 py-10 lg:px-12">
+<div class="text-center mb-12">
+<p class="text-accent-gold uppercase tracking-[0.2em] text-xs font-bold mb-3">La Carte</p>
+<h1 class="text-4xl md:text-5xl font-black text-white mb-6">Nos Créations Artisanales</h1>
+<p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
+                        Des recettes authentiques élaborées avec passion. Chaque ingrédient est sélectionné rigoureusement auprès de producteurs italiens et locaux.
+                    </p>
+</div>
+<div class="flex flex-wrap justify-center gap-4 mb-16 border-b border-white/10 pb-1">
+<button class="px-6 py-3 text-white border-b-2 border-primary font-bold text-sm tracking-wide bg-white/5 rounded-t-lg transition-all">Pizzas</button>
+<button class="px-6 py-3 text-slate-400 hover:text-white hover:bg-white/5 border-b-2 border-transparent hover:border-white/20 font-medium text-sm tracking-wide rounded-t-lg transition-all">Boissons</button>
+<button class="px-6 py-3 text-slate-400 hover:text-white hover:bg-white/5 border-b-2 border-transparent hover:border-white/20 font-medium text-sm tracking-wide rounded-t-lg transition-all">Desserts</button>
+<button class="px-6 py-3 text-slate-400 hover:text-white hover:bg-white/5 border-b-2 border-transparent hover:border-white/20 font-medium text-sm tracking-wide rounded-t-lg transition-all">Menus Formules</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="col-span-1 md:col-span-2 lg:col-span-3 mb-8">
+<div class="relative bg-card-dark rounded-2xl border border-accent-gold/40 shadow-xl overflow-hidden group flex flex-col md:flex-row">
+<div class="absolute top-4 left-4 z-20 bg-accent-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">stars</span> Suggestion du Chef
+                            </div>
+<div class="md:w-2/5 lg:w-1/2 h-64 md:h-auto overflow-hidden relative">
+<img alt="Pizza à la truffe" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1uqHdz3iDszERe8MhWDWCNKCNfqgY2WHEblKsSjkgHDy_nZvODBzAvx2TDPBo5qWyvumogrX5Q23VoZTZpJ17jg4sSeub_NV_j9a4IhjMt_hAtY2z-e9DLyNO-ECWPAKa7SR-0C65DQbYba2sBXtwulBazFMxS55dT4JgE-nwJwpvYJWA6ASvXp6X2hYSqQdej2UYIaRCwxmnU22WvrfBWXrnuSUro7pTUdprVXXTjWzi3zcNLIYE21iwS7BjRXbov1xY9DMNLqLN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r"></div>
+</div>
+<div class="p-8 md:w-3/5 lg:w-1/2 flex flex-col justify-center relative">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-bold text-white group-hover:text-accent-gold transition-colors">La Tartufo d'Alba</h3>
+<span class="text-2xl font-bold text-accent-gold">24€</span>
+</div>
+<p class="text-slate-300 mb-6 leading-relaxed">Une expérience gastronomique unique. Crème de truffe noire, mozzarella fior di latte, champignons porcini frais sautés à l'ail, copeaux de truffe d'été, huile de truffe blanche et noisettes torréfiées.</p>
+<div class="flex items-center gap-4 mt-auto">
+<button class="flex-1 bg-accent-gold hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Ajouter au panier</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+<div class="text-slate-400 text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>Dispo limitée</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza Margherita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwPbM8n7yfpUb47N8uhac-Wrd5rjWlqP1QjoLCPNu8tG9akuPtseqQjmOS_2uLfzRWyzCTQVdxQ9f00F1wFbIoCQQnDPtVkpjXBBlYDi8oDYGZtNaOp5X6rfAtFUWlhpzLp_oRKDmLBBJJM4DjyltCDRF0yhU29cVyhQtHtHQXD5BMhNb4mVYu1OdzJgCG0TNj9vX-re5SvHEFMcpCETKkkm_uT7XYpCpp4xe-NBVc4PZ0590kbHyyhvnuuQB-ZzLyXKNWVkScyxnv"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold border border-white/10">Végétarien</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">Margherita DOP</h3>
+<span class="text-lg font-bold text-primary">14€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Sauce tomate San Marzano DOP, Mozzarella di Bufala Campana, basilic frais, huile d'olive extra vierge.</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza Diavola" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_xcbmLjyy5KMsX17YhYBrfA80KxgwIlot6DdGaocg3kfv2NRzNxL60VeJOWuYLLGVTmHK-tolWWKJkG5RU1W9kNe1QPxY_sHA2LSLbIF3ftTfGAHkwdemg8nkHRV0jbzdxmUTxOSWClLT2x2sEBNDQRtDvzx4dQ6acT9dIkNJWe6aCMrld9M1ltSJAN6JOuS8sVcA6iO-W7ifxI4Y3mxunpY91bvu7G2jKuTkfS09KlWsgYcgIrxqgzmdamqt6kefu_YgOCdONMLQ"/>
+<div class="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded text-xs font-bold flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[10px]">local_fire_department</span> Épicé
+                            </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">Diavola Piccante</h3>
+<span class="text-lg font-bold text-primary">16€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Sauce tomate San Marzano, Spianata piccante de Calabre, fior di latte, nduja, oignons rouges confits, origan.</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza Parma" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABq8Q1uRuyOrmke4QHqe4ixgl47pYrjEqN-swvLr4hJos8f2dBAr2KxlRvGn-Jkb_ZFsOTFjFTbuoAxSw501N0zh23shLv3CH5QN0qPqSG1xfe_qtgbi0_ajp0_JQ7AMLIYEzs-J-d9-qyGZm-Sm5Lo41p_LoBeaOPbBE-99bxir0UBsVVNh83meQhZWy_zSH9KYfnVozdY5bErU1R5mwalM4P2rRu6kOuoq-FgE-gw75_k0DEN5IYU1fmBrQnbmRzNcNVkcZgYmV1"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">Parma &amp; Rucola</h3>
+<span class="text-lg font-bold text-primary">18€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Base blanche, mozzarella fior di latte, Jambon de Parme 24 mois, roquette fraîche, tomates cerises, copeaux de parmesan Reggiano.</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza 4 Fromages" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPqQvxy0WRyrrRyOZI9Q0C2eEs65aGKaV1Zqldr1ZtQh_F86oynbTuvtDl_ocSHNlRdtUc4iSM2SnxBv3W4qmU7QWbqTqnl9nEmYGCXE4Kt15xb0KYiJHI3T1Q8-Q3Ip9aL-Sq71i2B-0KcXVN3q56Hn6W7MmBkY4w6k6BVv_LMkWc5-hnD9scYOnOFCF3uXjiMsT0S_BgwRQbJ_nK1amhEkgQzjOw7ga-7CKNzonF4u8WI3o3APKXLBRrhwt5kR-uhhqmHn4PfnsN"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">Quattro Formaggi</h3>
+<span class="text-lg font-bold text-primary">17€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Base crème fraîche, Gorgonzola DOP, Taleggio, Mozzarella fior di latte, Parmesan, miel de châtaignier, noix.</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza Veggie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV8iI_SFrH6EvWt1e41_GNsTI9kQk4iio1o7iEP0lgv5nv_pvJhmXWDyRK5PHXqS_BUVncK5n87t8MBiTlegSHja-MgvwsW7BlDcPQqfhZgcGvyfdO0L2N3_W5dnDYqS-gWahrHdQN09fKjXhOqSVdrjbtE_6jKg0gdeFjh2aeU2QZHzUERt2dDU_CyZAA-eodE_1IQUge4hufdlfj2-fju9hxW6mvH1Q2aX28kcLPTLTd3wpR5YVY4ZuVUUJchVBvbS9x9VWYA5wD"/>
+<div class="absolute top-3 right-3 bg-green-700/80 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-bold border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">eco</span> Vegan
+                            </div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">L'Ortolana</h3>
+<span class="text-lg font-bold text-primary">15€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Crème de courgette, aubergines grillées, poivrons rouges rôtis, tomates séchées, olives taggiasche, basilic.</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-white/5 overflow-hidden group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col h-full">
+<div class="h-56 overflow-hidden relative">
+<img alt="Pizza Napoli" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkbSjrUpfX35kssHX8HD-bkhJ4hDQOZbl6MjcPKhXss3kERQ6XXKAYLxxfC4RJdVaw2_uPGgPGuMAXFvWueNUuK-FaQAXsWzJFDyHN9R6i7esEJZDUOx6gxAxc5yxzVuCp6BrlmirFtQT5JAeEsWKigRcbHNigbsHABAoVgOYZjPHkxg2AxSsiMYm5bYgIENwGXm2GqYGzta7GkNvd23_SnCbrc86H5fqZx1M9UY3w5ZLgDHrEfhqJT5meSsFNCfqgiL6c3oQfCJeZ"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white">Napoli</h3>
+<span class="text-lg font-bold text-primary">16€</span>
+</div>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Sauce tomate San Marzano, anchois de Cetara, câpres de Pantelleria, olives noires, origan, ail (sans fromage).</p>
+<button class="w-full border border-white/20 hover:border-primary hover:bg-primary/10 hover:text-primary text-white font-medium py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+<span>Ajouter</span>
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
