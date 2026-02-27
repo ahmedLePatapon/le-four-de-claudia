@@ -52,7 +52,9 @@ export default function BestSellers() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
               >
-                <PizzaCard pizza={pizza} featured />
+                <Link href={`/carte/${pizza.id}`} className="block h-full">
+                  <PizzaCard pizza={pizza} featured />
+                </Link>
               </motion.div>
             ) : null
           )}

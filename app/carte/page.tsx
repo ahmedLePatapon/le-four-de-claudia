@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { pizzas, CATEGORIES } from "@/data/pizzas";
+import Link from "next/link";
 import PizzaCard from "@/components/carte/PizzaCard";
 import { cn } from "@/lib/utils";
 
@@ -128,7 +129,9 @@ export default function CartePage() {
                       viewport={{ once: true, margin: "-40px" }}
                       transition={{ delay: i * 0.06, duration: 0.4 }}
                     >
-                      <PizzaCard pizza={pizza} />
+                      <Link href={`/carte/${pizza.id}`} className="block h-full">
+                        <PizzaCard pizza={pizza} />
+                      </Link>
                     </motion.div>
                   ))}
                 </div>

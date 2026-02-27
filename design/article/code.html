@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wahou Pizzeria - Le Secret de notre Pâte</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee3b2b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#181211", 
+                        "background-card": "#231a18",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "Noto Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181211; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ee3b2b; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-200 antialiased overflow-x-hidden selection:bg-primary/30 selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[20%] right-[-10%] w-[30%] h-[30%] bg-orange-600/5 rounded-full blur-[100px]"></div>
+</div>
+<header class="absolute top-0 left-0 w-full z-50 flex items-center justify-between whitespace-nowrap px-8 py-6 lg:px-16 border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">local_pizza</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight font-display">Wahou Pizzeria</h2>
+</div>
+<nav class="hidden lg:flex flex-1 justify-center gap-10">
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">Menu</a>
+<a class="text-white underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">Journal</a>
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">L'Histoire</a>
+<a class="text-slate-300 hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2 text-sm font-medium transition-colors" href="#">Réservations</a>
+</nav>
+<div class="hidden sm:flex items-center justify-end gap-4">
+<button class="flex items-center justify-center overflow-hidden rounded-full h-11 px-6 bg-primary hover:bg-red-600 transition-colors text-white text-sm font-bold shadow-lg shadow-primary/30 font-display">
+<span class="truncate">Commander</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full pt-24 pb-12 z-10">
+<div class="relative w-full h-[60vh] overflow-hidden mb-16">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-black/40 z-10"></div>
+<img alt="Fresh basil and San Marzano tomatoes on dark stone" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8pWkrabEc-pPwvk1ppm_VP5gwtkARE4yj9Q8t_j10Jxo-qEzWg68cQzRhiBz_8v2huNirmFWm5KMxgPdHmRPYXevskf2B4mlLXH49yM2b_JdIGWzSohutWZhggv9Miad0cgT1Vye-dk8VLNAS9lqcBnkeNiM-1d3EKD5JNCK0PWuOZJFPacy07I8knaQXfUAAznaAiv1StxYM2TAZrLUMOMieGVs9o8rVvzxDxSNmoJ-0pCtftL2QFTtn0Mxs1i5_QqOZb2GxrIo-"/>
+<div class="absolute bottom-0 left-0 w-full z-20 px-6 lg:px-16 pb-12">
+<div class="max-w-4xl mx-auto text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+<span>Savoir-faire</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                        Le Secret de notre Pâte : <br/><i class="font-light">72h de Fermentation</i>
+</h1>
+<div class="flex items-center justify-center gap-6 text-sm text-slate-300 font-display">
+<div class="flex items-center gap-2">
+<span class="size-8 rounded-full bg-slate-700 overflow-hidden"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALNU496vnbUrYUgYJaz5DDIYSmVteagAofFdcspw6AF_YEqlE9Y9P_5VLcH51Bhcq9jweGL5fwvLTKJjZlt2mOfFu8HhTZBwylwhegJt1evoqQ1kThVthVdVjhnL2ld94sTSXsNjJnYea7c5y40AK7h6cfl2msut1aMktMAJHn99KGStskNDQEdGp7E7wMN2gdcXeHnuRhSrMpZy7FZ4ig0zVJ2VjUIMof8dAZqsoY7wVH9kf_1f8sapKyOwOIBhYYyp40dSvT83YE"/></span>
+<span>Par <span class="text-white font-medium">Marco Rossi</span></span>
+</div>
+<span class="size-1 rounded-full bg-slate-500"></span>
+<span>12 Octobre 2023</span>
+<span class="size-1 rounded-full bg-slate-500"></span>
+<span>5 min de lecture</span>
+</div>
+</div>
+</div>
+</div>
+<div class="layout-container flex flex-col lg:flex-row gap-16 px-6 lg:px-16 max-w-7xl mx-auto">
+<aside class="hidden lg:flex flex-col gap-6 w-16 pt-4 sticky top-32 h-fit">
+<p class="text-[10px] uppercase tracking-widest text-slate-500 rotate-180 mb-4 [writing-mode:vertical-rl]">Partager</p>
+<button class="size-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-primary hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+<button class="size-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-primary hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<button class="size-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-primary hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined text-lg">bookmark</span>
+</button>
+</aside>
+<article class="flex-1 max-w-3xl mx-auto">
+<p class="text-xl md:text-2xl text-slate-300 font-serif leading-relaxed mb-10 drop-shadow-sm">
+                    La pizza napolitaine est un art subtil où la simplicité des ingrédients rencontre la complexité du temps. Chez Wahou, nous avons choisi de ne jamais presser le temps.
+                </p>
+<div class="prose prose-invert prose-lg text-slate-400 font-sans leading-8">
+<p class="mb-8">
+                        Il est 4 heures du matin quand les lumières de la cuisine s'allument. Alors que la ville dort encore, le rituel commence. Pas de machines industrielles bruyantes, juste le son rythmé des mains qui travaillent la farine. C'est ici que tout se joue, dans le silence de l'aube.
+                    </p>
+<p class="mb-12">
+                        La plupart des pizzerias modernes optent pour une fermentation rapide de 4 à 8 heures pour maximiser la production. Nous avons pris le chemin inverse. Notre pâte repose pendant <strong class="text-white font-medium">72 heures complètes</strong> dans une chambre à température et humidité contrôlées. Pourquoi ? Pour la légèreté.
+                    </p>
+<div class="my-16 border-l-4 border-primary pl-8 py-2">
+<blockquote class="text-2xl font-serif italic text-white leading-normal">
+                            "Le temps est notre ingrédient le plus précieux. On ne peut pas tricher avec la fermentation. C'est elle qui donne cette croûte alvéolée et digeste."
+                        </blockquote>
+<cite class="block mt-4 text-sm font-sans text-primary not-italic font-bold tracking-wide uppercase">— Chef Marco Rossi</cite>
+</div>
+<h3 class="text-2xl font-display font-bold text-white mb-6 mt-12">La Science de la Maturation</h3>
+<p class="mb-8">
+                        Durant ces trois jours, les enzymes décomposent les sucres complexes de la farine. Ce processus, appelé maturation, rend la pâte incroyablement digeste. Fini la sensation de lourdeur après le repas. De plus, cela développe des arômes subtils de pain grillé et de noisette qui se marient parfaitement avec l'acidité de nos tomates San Marzano.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-16">
+<figure>
+<img alt="Chef kneading dough" class="w-full h-80 object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_MZVAxdlZKDBZsots2OdJqhYvstnk7DegA8VSv4_59mNprdplMyBcHLBUkfhiYqR87LdpiwzAiiHFLKHfd6kiw_feefp9CW7DdrV4LKACVy_VFOXUaBDb-WmSFIQIHu3rQ5JRNkfvsCwdoi1KImj6DtPpUIyU4I1LRKGFgrNWKFEe_1MtUUsdTmSGyjbra8TD3sR_yfBaifNKl-_aUSBZO33kIJgVAEa14vaq3AO4oas2jM1u7cWCUraeHFuSHE2kjpj5-CoDmJSR"/>
+<figcaption class="mt-3 text-xs text-slate-500 text-center font-display">Pétrissage manuel quotidien</figcaption>
+</figure>
+<figure class="md:mt-12">
+<img alt="Close up of fermented dough bubbles" class="w-full h-80 object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNi1eOpFVkPXyOqtnAjNpf7jtyYBt9PaZGWuRm0B2yVTCKkWDDM4CMBOOrKSM86zFXzE1So6yYh4EE0xko8HK3TIxmP0Lpt7unIU1EjP07f_HPoRiUItKMc0xnHEjDWOzrHMxa76mQnMYmLGxSsVCgtSM2KVVQkz2s7m_TBVIlg6PKpKRjbSX04WrvESLdETCIz9pIOOOnKXq5nbKAgo-BgzMcWSsoFzSLRuni-oWPXt3cDNqBk6DZYD8tk-1T7m7W5W9SPDYLv5Is"/>
+<figcaption class="mt-3 text-xs text-slate-500 text-center font-display">Structure alvéolée après 72h</figcaption>
+</figure>
+</div>
+<div class="prose prose-invert prose-lg text-slate-400 font-sans leading-8 mb-16">
+<h3 class="text-2xl font-display font-bold text-white mb-6">Un Équilibre Fragile</h3>
+<p>
+                        Utiliser une fermentation longue demande une vigilance constante. La moindre variation de température peut altérer le résultat final. C'est pourquoi nous utilisons exclusivement une farine italienne type '00' à haute teneur en protéines, capable de supporter cette longue levée sans s'effondrer.
+                    </p>
+<p class="mt-6">
+                        La prochaine fois que vous croquerez dans une part de Wahou Pizza, souvenez-vous que cette bouchée a commencé son voyage trois jours plus tôt, avec de la farine, de l'eau, et beaucoup de patience.
+                    </p>
+</div>
+<div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">#SavoirFaire</span>
+<span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">#CuisineItalienne</span>
+<span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">#SlowFood</span>
+</div>
+<div class="flex lg:hidden gap-4">
+<button class="p-2 text-slate-400 hover:text-white"><span class="material-symbols-outlined">share</span></button>
+<button class="p-2 text-slate-400 hover:text-white"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+</div>
+</article>
+<aside class="w-full lg:w-80 flex flex-col gap-12 mt-16 lg:mt-0">
+<div class="bg-background-card p-8 rounded-2xl border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors"></div>
+<h3 class="text-xl font-display font-bold text-white mb-2 relative z-10">Rejoignez le Club</h3>
+<p class="text-sm text-slate-400 mb-6 relative z-10">Recevez nos secrets de chef et offres exclusives chaque mois.</p>
+<form class="flex flex-col gap-3 relative z-10">
+<input class="w-full bg-background-dark border border-slate-700 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Votre email" type="email"/>
+<button class="w-full bg-white text-background-dark font-bold text-sm py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">M'inscrire</button>
+</form>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-6">À lire aussi</h4>
+<div class="flex flex-col gap-6">
+<a class="group flex gap-4 items-start" href="#">
+<div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden bg-slate-800">
+<img alt="Tomatoes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE4xNU9ZcugkXV2ock9g2ciT1o3-IFeTQia9LOfAluq0qF0-BZWuDFZFR7ungbAi1f2TetKdbhy-CmH2eIdkS68er97EIeExgeamDtcxRqqQcttv3i7cGvkL3W5plwOpi8Yv6d4FHW1V40G_TQKWG2zQ_ixmhcurzxm0XcM34nNCdLUcR1CIHmHGvu7w6tDPNQxdSsJTW9Z8u_0pnRyYXPzdhglJ3t2oXKuIrA5iLMIbwWVVtf0rsSDpBRaQKf7jBUGS7fNyQEinRa"/>
+</div>
+<div>
+<h5 class="text-white font-serif font-medium leading-snug group-hover:text-primary transition-colors">Pourquoi la San Marzano est la Reine des Tomates</h5>
+<span class="text-xs text-slate-500 mt-2 block">28 Septembre 2023</span>
+</div>
+</a>
+<a class="group flex gap-4 items-start" href="#">
+<div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden bg-slate-800">
+<img alt="Mozzarella" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBts1vSc48_30owEGpMKiIBpxznfwzgVr2T0y96TgWH9ZrYgE_vsF-r2x_YxVRB2WKktyo_iFVf9WBJoJH7cyDD6NplSxwvFANVAV8F6b9ZpwAP2dAE8DsHXVPYfP-1pJ6uDxE8dDRCWeyLPBfsg0T3OtZS4vLtOp5Ow7DHaIKXGDQVgrYJf4MNLZI-e14bo_Dpj2EgKdw8sy8P-_jSh04Y81fxne_0xxlVzk8KcNA2EEDUOx1KMD-tNIYnx0r5Xjxjn6MG_cnEbcSe"/>
+</div>
+<div>
+<h5 class="text-white font-serif font-medium leading-snug group-hover:text-primary transition-colors">Mozzarella di Bufala : Comment la choisir ?</h5>
+<span class="text-xs text-slate-500 mt-2 block">15 Août 2023</span>
+</div>
+</a>
+<a class="group flex gap-4 items-start" href="#">
+<div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden bg-slate-800">
+<img alt="Wood oven" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP-j73YRO6yZx-K6ZJSnGAvJq2KckJ5S4yKroYM6e4DPye5ESNJ5vpEqp_fwBqdNMnNBP1chYUiFGSARhi7BpgE-GMFVmpZFkGAkMy9-c4qD6HgJl-G6XOxcrmNcvpMJdCUXUYX9pL2Mi6RWUmC9QSmsnbRT5T0ehAA0Vx--6sT6s93y1tkYDwO4lysSMJ9ZjmTVUpmdR4dWLkDKcyeSDZnp0WyieQ6EPORCe3YwBwq_Phlf4Q0S6D7uDuPmngwfVb5p_IO9mW66oD"/>
+</div>
+<div>
+<h5 class="text-white font-serif font-medium leading-snug group-hover:text-primary transition-colors">L'art de la cuisson au feu de bois</h5>
+<span class="text-xs text-slate-500 mt-2 block">03 Juillet 2023</span>
+</div>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<footer class="border-t border-white/5 bg-background-dark pt-16 pb-8">
+<div class="px-8 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">local_pizza</span>
+</div>
+<h2 class="text-white text-lg font-bold">Wahou Pizzeria</h2>
+</div>
+<div class="flex gap-8 text-sm text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="hover:text-primary transition-colors" href="#">Facebook</a>
+<a class="hover:text-primary transition-colors" href="#">TripAdvisor</a>
+</div>
+</div>
+<div class="text-center text-xs text-slate-600">
+            © 2024 Wahou Pizzeria. Tous droits réservés.
+        </div>
+</footer>
+</div>
+
+</body></html>
