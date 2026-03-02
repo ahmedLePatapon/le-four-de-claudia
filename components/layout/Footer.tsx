@@ -14,7 +14,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-white tracking-tight">Le Four de Claudia</h3>
           </div>
           <p className="text-slate-500 text-sm">
-            L'art de la pizza artisanale depuis 1998.
+            L&apos;art de la pizza artisanale depuis 1998.
           </p>
           <nav className="flex flex-wrap justify-center gap-6">
             <Link href="/carte" className="text-slate-400 hover:text-white transition-colors text-sm">

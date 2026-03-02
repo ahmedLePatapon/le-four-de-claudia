@@ -77,7 +77,7 @@ export default function Testimonials() {
                 style={{ color: "#ee3b2b", opacity: 0.2, fontFamily: "Georgia, serif" }}
                 aria-hidden="true"
               >
-                "
+                &ldquo;
               </span>
 
               <StarRating count={review.stars} />

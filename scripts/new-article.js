@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 /**
- * Script optimisé pour le blog de la Pizzeria "Le Four de Claudia"
+ * Script pour créer un nouvel article de blog
+ * Usage: node scripts/new-article.js
  */
 
 const fs = require("fs");
@@ -30,82 +32,85 @@ function slugify(text) {
 }
 
 async function main() {
-  console.log("\n🍕 CRÉATEUR D'ARTICLES - LE FOUR DE CLAUDIA\n");
+  console.log("\n🍕 Créer un nouvel article de blog\n");
 
-  const titre = await question("Titre de l'article (ex: Le secret de notre cuisson au feu de bois) : ");
+  const titre = await question("Titre de l'article : ");
   if (!titre.trim()) {
     console.error("❌ Le titre est requis.");
     rl.close();
     process.exit(1);
   }
 
-  // Catégories personnalisées pour ta pizzeria
-  console.log("\nCatégories suggérées : Tradition, Secrets de Chef, Ingrédients, Coulisses");
-  const categorie = await question("Catégorie : ");
-
-  const extrait = await question("Extrait (résumé pour la carte de l'article) : ");
-  const imageUrl = await question("URL de l'image (Entrée pour l'image de pizza par défaut) : ");
+  const categorie = await question("Catégorie (Technique/Tradition/Ingrédients/Histoire) : ");
+  const extrait = await question("Extrait (résumé court) : ");
+  const imageUrl = await question("URL de l'image (ou Enter pour placeholder Unsplash) : ");
+  const tempsLectureInput = await question("Temps de lecture en minutes (défaut: 5) : ");
 
   const slug = slugify(titre);
-  const date = new Date().toISOString().split("T")[0];
-  const image = imageUrl.trim() || "https://images.unsplash.com/photo-1573152165306-056699048de1?w=1200"; // Image de four à bois
+  const date = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+  const tempsLecture = parseInt(tempsLectureInput) || 5;
+  const image = imageUrl.trim() || "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200";
 
   const frontmatter = `---
 slug: ${slug}
 titre: "${titre}"
 date: ${date}
-categorie: ${categorie || "Tradition"}
-extrait: "${extrait || "Découvrez les secrets de notre savoir-faire artisanal au feu de bois."}"
+categorie: ${categorie || "Technique"}
+extrait: "${extrait || "Description à compléter..."}"
 image: ${image}
-tempsLecture: 4
+tempsLecture: ${tempsLecture}
 ---`;
 
   const placeholderContent = `
-## L'authenticité du Feu de Bois
+## Introduction
 
-Pourquoi la cuisson au bois change-t-elle tout ? C'est une question de température et de parfum. 
-Chez **Le Four de Claudia**, nous utilisons exclusivement du bois de qualité pour atteindre les **400°C** nécessaires à une saisie parfaite.
+Écrivez votre introduction ici...
 
-### Le secret de la pâte
+## Section principale
 
-Une pizza au feu de bois ne serait rien sans une pâte qui a pris le temps de reposer.
-- Farine sélectionnée
-- Maturation longue
-- Étalage à la main
+Le corps de votre article avec des **gras** et de l'*italique*.
 
-> "Le feu de bois, c'est l'âme de la pizza italienne. On ne cherche pas seulement à cuire, on cherche à sublimer le produit."
-> — L'équipe du Four de Claudia
+### Sous-section
 
-## Nos Ingrédients
+Vous pouvez utiliser :
 
-Nous sélectionnons nos produits avec soin pour qu'ils révèlent tous leurs arômes sous la flamme :
-1. Mozzarella fior di latte
-2. Tomates San Marzano
-3. Huile d'olive extra vierge
+- Des listes à puces
+- Plusieurs niveaux de titres
+- Des [liens](https://example.com)
+- Des images : ![alt text](https://images.unsplash.com/photo-example)
 
-Venez goûter la différence !
+> Et des citations pour mettre en valeur des idées importantes.
+> — Claudia
+
+## Conclusion
+
+Concluez votre article...
 `;
 
   const mdxContent = `${frontmatter}\n${placeholderContent}\n`;
+  const fileDir = path.join(process.cwd(), "content/blog");
+  const filePath = path.join(fileDir, `${slug}.mdx`);
 
-  // S'assurer que le dossier existe
-  const dirPath = path.join(process.cwd(), "content/blog");
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
+  // Créer le dossier si nécessaire
+  if (!fs.existsSync(fileDir)) {
+    fs.mkdirSync(fileDir, { recursive: true });
   }
 
-  const filePath = path.join(dirPath, `${slug}.mdx`);
-
+  // Vérifier si le fichier existe déjà
   if (fs.existsSync(filePath)) {
-    console.error(`\n❌ L'article "${slug}.mdx" existe déjà.`);
+    console.error(`\n❌ Le fichier ${slug}.mdx existe déjà.`);
     rl.close();
     process.exit(1);
   }
 
   fs.writeFileSync(filePath, mdxContent, "utf-8");
 
-  console.log(`\n✅ Article créé avec succès : content/blog/${slug}.mdx`);
-  console.log(`\n🔥 Il ne vous reste plus qu'à ajuster le texte pour parler de vos fours !`);
+  console.log(`\n✅ Article créé : content/blog/${slug}.mdx`);
+  console.log(`\n📝 Prochaines étapes :`);
+  console.log(`   1. Ouvrir le fichier et écrire votre contenu`);
+  console.log(`   2. Tester localement : npm run dev`);
+  console.log(`   3. Builder : npm run build`);
+  console.log(`   4. Commiter : git add content/blog/${slug}.mdx && git commit -m "Ajouter article: ${titre}"\n`);
 
   rl.close();
 }

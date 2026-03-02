@@ -22,7 +22,7 @@ export default function Hero() {
 
             {/* Title */}
             <h1 className="text-white text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight mb-8">
-              L'Art de la{" "}
+              L&apos;Art de la{" "}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500">
                 Pizza Artisanale
