@@ -39,7 +39,7 @@ export default function Footer() {
             © 2024 Le Four de Claudia. Tous droits réservés.
           </p>
           <p className="text-slate-500 text-xxs mt-2">
-            Photos: <a className="text-slate-400 hover:text-white underline" href="https://unsplash.com" target="_blank" rel="noreferrer">Unsplash</a>
+            Photos: <a className="text-slate-400 hover:text-white underline" href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>
           </p>
         </div>
       </div>
