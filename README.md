@@ -9,9 +9,9 @@ Site web de la pizzeria **Le Four de Claudia** — artisanale, tradition italien
 ## ✨ Fonctionnalités
 
 - **Page d'accueil** : Hero cinématographique avec parallax, section À propos, meilleures pizzas, témoignages, aperçu blog
-- **La Carte** : 39 pizzas en 10 catégories, filtre sticky animé, transitions AnimatePresence
-- **Blog** : 3 articles riches sur la technique pizza, avec pages dynamiques et articles similaires
-- **Dark mode** : Bascule lumière/sombre avec next-themes
+- **La Carte** : 50 pizzas en 10 catégories, filtre sticky animé, transitions AnimatePresence
+- **Blog** : 6 articles en **MDX** (Markdown + React), pages dynamiques SSG, articles similaires
+- **Dark theme** : Design permanent dark avec tokens CSS custom
 - **SEO** : metadata, OpenGraph, sitemap.xml, robots.txt
 - **Animations** : Framer Motion (scroll reveal, hover, stagger, parallax)
 - **Responsive** : Mobile-first, breakpoints sm/md/lg
@@ -27,7 +27,9 @@ Site web de la pizzeria **Le Four de Claudia** — artisanale, tradition italien
 | TypeScript | 5 |
 | Tailwind CSS | v4 (CSS-based config) |
 | Framer Motion | 12 |
-| next-themes | 0.4.6 |
+| **next-mdx-remote** | **5.x** (Blog MDX) |
+| gray-matter | 4.x (Frontmatter parsing) |
+| remark-gfm + rehype-* | (Markdown plugins) |
 | clsx + tailwind-merge | dernière version |
 
 ---
@@ -59,20 +61,21 @@ Ouvrir [http://localhost:3000](http://localhost:3000)
 ```
 le-four-de-claudia/
 ├── app/
-│   ├── layout.tsx          # Layout global (fonts, ThemeProvider, Navbar, Footer)
-│   ├── globals.css         # Tailwind v4 + @theme + variables CSS
+│   ├── layout.tsx          # Layout global (fonts, Navbar, Footer)
+│   ├── globals.css         # Tailwind v4 + @theme + dark tokens
 │   ├── page.tsx            # Page d'accueil
 │   ├── carte/
-│   │   └── page.tsx        # Page carte (client, filtres)
+│   │   ├── page.tsx        # Page carte (client, filtres)
+│   │   └── [id]/page.tsx   # Détail pizza (SSG)
 │   ├── blog/
-│   │   ├── page.tsx        # Liste des articles
+│   │   ├── page.tsx        # Liste des articles (MDX)
 │   │   └── [slug]/
-│   │       └── page.tsx    # Article dynamique
+│   │       └── page.tsx    # Article MDX avec <MDXRemote />
 │   ├── sitemap.ts
 │   └── robots.ts
 ├── components/
 │   ├── layout/
-│   │   ├── Navbar.tsx      # Navbar sticky avec dark mode
+│   │   ├── Navbar.tsx      # Navbar sticky
 │   │   └── Footer.tsx      # Footer 3 colonnes
 │   ├── home/
 │   │   ├── Hero.tsx        # Hero section plein écran
@@ -85,13 +88,23 @@ le-four-de-claudia/
 │   │   └── CategoryFilter.tsx
 │   └── blog/
 │       ├── ArticleCard.tsx
-│       ├── BlogHero.tsx
+│       ├── BlogGrid.tsx     # Masonry + filtres
 │       └── RelatedArticles.tsx
+├── content/
+│   └── blog/                # ⭐ Articles en .mdx
+│       ├── secrets-pate-parfaite.mdx
+│       ├── cuisson-feu-de-bois.mdx
+│       └── ... (6 articles)
 ├── data/
-│   ├── pizzas.ts           # 39 pizzas typées + catégories + best sellers
-│   └── blog.ts             # 3 articles avec contenu HTML
-└── lib/
-    └── utils.ts            # cn(), formatPrice()
+│   └── pizzas.ts           # 50 pizzas typées + catégories
+├── lib/
+│   ├── mdx.ts              # ⭐ getAllArticles(), getArticleBySlug()
+│   └── utils.ts            # cn(), formatPrice()
+├── scripts/
+│   ├── new-article.js      # ⭐ CLI scaffold nouvel article
+│   └── migrate-blog.js     # Script de migration (one-time)
+└── docs/
+    └── AJOUTER-UN-ARTICLE.md
 ```
 
 ---
@@ -136,23 +149,48 @@ Pour l'ajouter aux best sellers, ajouter son `id` au tableau `BEST_SELLERS`.
 
 ## 📝 Ajouter un article de blog
 
-Dans `data/blog.ts`, ajouter un objet au tableau `articles` :
+**Méthode recommandée** : utiliser le script interactif
 
-```ts
-{
-  slug: "mon-article",
-  titre: "Mon nouvel article",
-  date: "2024-04-10",
-  categorie: "Technique",           // Technique | Tradition | Ingrédients
-  extrait: "Résumé de l'article affiché dans les cartes.",
-  image: "https://images.unsplash.com/photo-XXXX?w=1200",
-  tempsLecture: 4,
-  contenu: `
-    <h2>Mon titre de section</h2>
-    <p>Contenu en HTML...</p>
-  `,
-},
+```bash
+node scripts/new-article.js
 ```
+
+Le script crée automatiquement un fichier `.mdx` avec frontmatter YAML dans `content/blog/`.
+
+**Méthode manuelle** : créer un fichier `content/blog/mon-slug.mdx` :
+
+```markdown
+---
+slug: mon-article
+titre: "Mon nouvel article"
+date: 2024-04-10
+categorie: Technique
+extrait: "Résumé de l'article..."
+image: https://images.unsplash.com/photo-XXXX?w=1200
+tempsLecture: 4
+---
+
+## Mon contenu en Markdown
+
+Écrivez votre article ici avec **Markdown**...
+```
+
+📖 **Documentation complète** : [docs/AJOUTER-UN-ARTICLE.md](./docs/AJOUTER-UN-ARTICLE.md)
+
+---
+
+## 🔄 Migration Blog → MDX
+
+Le blog a été migré de `data/blog.ts` (HTML brut) vers **next-mdx-remote** :
+
+- ✅ **6/6 articles** convertis en `.mdx` (Markdown + frontmatter YAML)
+- ✅ Routes `/blog` et `/blog/{slug}` **inchangées**
+- ✅ Plus de `dangerouslySetInnerHTML` (sécurisé)
+- ✅ Fichiers git-friendly et versionnables
+- ✅ Support Markdown + composants React (MDX)
+
+**Rapport de migration** : [migration-report.md](./migration-report.md)  
+**Script de migration** : [scripts/migrate-blog.js](./scripts/migrate-blog.js)
 
 ---
 
