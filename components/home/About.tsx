@@ -73,7 +73,7 @@ export default function About() {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5" style={{ transform: "rotate(-2deg)", aspectRatio: "4/5" }}>
               <Image
-                src="https://images.unsplash.com/photo-1571167530149-c1105da4b1c2?w=800"
+                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800"
                 alt="Claudia travaillant la pâte à pizza"
                 fill
                 className="object-cover"

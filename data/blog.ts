@@ -205,7 +205,7 @@ export const articles: Article[] = [
     categorie: "Ingrédients",
     extrait:
       "Fior di latte ou bufala ? Fraîche ou industrielle ? Tout ce que vous devez savoir pour reconnaître une vraie mozzarella — et comprendre pourquoi ça change tout sur votre pizza.",
-    image: "https://images.unsplash.com/photo-1571167530149-c1105da4b1c2?w=1200",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200",
     tempsLecture: 3,
     contenu: `
       <h2>Fior di latte vs. Mozzarella di bufala : quelle différence ?</h2>
