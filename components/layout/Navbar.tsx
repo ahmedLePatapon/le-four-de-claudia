@@ -60,7 +60,7 @@ export default function Navbar() {
               href={link.href}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-white hover:underline decoration-primary underline-offset-4 decoration-2",
-                pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href.split("#")[0]))
+                pathname === link.href || (link.href !== "/" && !link.href.includes("#") && pathname.startsWith(link.href))
                   ? "text-white font-bold underline decoration-primary"
                   : "text-slate-300"
               )}
