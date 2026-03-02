@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { articles } from "@/data/blog";
+import { getAllArticles } from "@/lib/mdx";
 import BlogGrid from "@/components/blog/BlogGrid";
 
 export const metadata: Metadata = {
@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const articles = getAllArticles();
+  
   return (
     <div className="min-h-screen bg-[#181211]">
       {/* Background blobs */}

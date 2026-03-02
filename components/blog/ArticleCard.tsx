@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { type Article } from "@/data/blog";
+import { type Article } from "@/lib/mdx";
 
 function formatDateFr(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("fr-FR", {

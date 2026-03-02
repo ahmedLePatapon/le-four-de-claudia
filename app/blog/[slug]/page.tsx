@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { articles } from "@/data/blog";
+import { getAllArticles, getArticleBySlug } from "@/lib/mdx";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
+  const articles = getAllArticles();
   return articles.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return {};
   return {
     title: article.titre,
@@ -39,10 +40,11 @@ function formatDateFr(dateStr: string): string {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticleBySlug(slug);
   if (!article) notFound();
 
-  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const allArticles = getAllArticles();
+  const related = allArticles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-[#181211]">
@@ -122,10 +124,9 @@ export default async function ArticlePage({ params }: Props) {
           </p>
 
           {/* Body */}
-          <div
-            className="prose-pizza"
-            dangerouslySetInnerHTML={{ __html: article.contenu }}
-          />
+          <div className="prose-pizza">
+            {article.content}
+          </div>
 
           {/* Tags */}
           <div className="border-t border-slate-800 pt-8 mt-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">

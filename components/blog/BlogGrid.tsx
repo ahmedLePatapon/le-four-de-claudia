@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Article } from "@/data/blog";
+import { type Article } from "@/lib/mdx";
 
 interface BlogGridProps {
   articles: Article[];

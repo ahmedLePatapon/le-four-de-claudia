@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
-import { articles } from "@/data/blog";
+import { getAllArticles } from "@/lib/mdx";
 import { pizzas } from "@/data/pizzas";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const articles = getAllArticles();
   const blogUrls = articles.map((a) => ({
     url: `https://lefourdeClaudia.fr/blog/${a.slug}`,
     lastModified: new Date(a.date),

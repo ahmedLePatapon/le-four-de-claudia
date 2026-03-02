@@ -3,10 +3,14 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { articles } from "@/data/blog";
+import { type Article } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 
-export default function BlogPreview() {
+interface BlogPreviewProps {
+  articles: Article[];
+}
+
+export default function BlogPreview({ articles }: BlogPreviewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

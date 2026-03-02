@@ -1,4 +1,4 @@
-import { type Article } from "@/data/blog";
+import { type Article } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 
 interface RelatedArticlesProps {
