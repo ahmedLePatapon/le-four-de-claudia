@@ -25,7 +25,7 @@ const categoryImages: Record<string, string> = {
   Boissons: "https://images.unsplash.com/photo-1543253687-c931c8e01820?w=1200",
   Desserts: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200",
   "Formules Midi": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1200",
-  Suppléments: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200",
+  Suppléments: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200",
 };
 
 const SIZES = [
@@ -94,6 +94,16 @@ export default async function PizzaDetailPage({ params }: Props) {
   const image = categoryImages[pizza.categorie] ?? categoryImages["Traditionnelles"];
   const ingredients = parseIngredients(pizza.description);
   const enrichedDesc = getEnrichedDescription(pizza);
+  // Supplement ingredients list for the 'Ingrédient supplémentaire' product (excluding œuf & olives)
+  const supplementIngredients = pizza.id === 'supplement_ingredient' ? [
+    'Jambon',
+    'Champignons',
+    'Poivrons',
+    'Oignons',
+    'Basilic',
+    'Parmesan',
+    'Chorizo',
+  ] : [];
   const availableSizes = SIZES.filter((s) => pizza.prix[s.key] !== undefined);
 
   // Similar pizzas (same category, excluding current)
@@ -170,6 +180,17 @@ export default async function PizzaDetailPage({ params }: Props) {
 
               <div className="text-slate-300 mb-8 border-l-2 border-primary/50 pl-6">
                 <p>{pizza.description}</p>
+                {supplementIngredients.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-3">Ingrédients disponibles</h3>
+                    <ul className="flex flex-wrap gap-3">
+                      {supplementIngredients.map((ing) => (
+                        <li key={ing} className="px-3 py-2 bg-[#231a19] border border-white/10 rounded-lg text-slate-300">{ing}</li>
+                      ))}
+                    </ul>
+                    <p className="text-sm mt-2 text-slate-400">Hors œuf et olives.</p>
+                  </div>
+                )}
                 {enrichedDesc && (
                   <p className="text-sm mt-4 text-slate-400">
                     <strong className="text-slate-200">Le secret :</strong>{" "}
