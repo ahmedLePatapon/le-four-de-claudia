@@ -4,6 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
+const embers = [
+  { size: 5, x: "15%", delay: 0,   duration: 3.5, blur: 8,  pulseDuration: 2.3 },
+  { size: 7, x: "65%", delay: 0.8, duration: 4.2, blur: 10, pulseDuration: 2.7 },
+  { size: 4, x: "40%", delay: 0.3, duration: 3.8, blur: 7,  pulseDuration: 2.1 },
+  { size: 6, x: "80%", delay: 1.2, duration: 4.8, blur: 9,  pulseDuration: 2.9 },
+  { size: 5, x: "25%", delay: 1.5, duration: 4.0, blur: 8,  pulseDuration: 2.5 },
+  { size: 6, x: "55%", delay: 0.6, duration: 4.1, blur: 10, pulseDuration: 2.6 },
+  { size: 4, x: "75%", delay: 1.8, duration: 3.7, blur: 8,  pulseDuration: 2.2 },
+  { size: 5, x: "35%", delay: 1.1, duration: 4.3, blur: 9,  pulseDuration: 2.8 },
+];
+
 export default function Hero() {
   const reduce = useReducedMotion();
 
@@ -127,6 +138,37 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Floating embers */}
+      {!reduce && (
+        <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+          {embers.map((ember, i) => (
+            <motion.div
+              key={i}
+              className="absolute bottom-0 rounded-full"
+              animate={{ opacity: [0.6, 0.9, 0.6] }}
+              transition={{ duration: ember.pulseDuration, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                left: ember.x,
+                width: ember.size,
+                height: ember.size,
+                backgroundColor: "#F2B138",
+                boxShadow: `0 0 ${ember.blur}px #D92B04, 0 0 ${ember.blur * 1.5}px rgba(217,43,4,0.6)`,
+                animation: `float-up ${ember.duration}s ease-in ${ember.delay}s infinite`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Ember float animation */}
+      <style jsx>{`
+        @keyframes float-up {
+          0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+          50%  { opacity: 0.9; }
+          100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 }
