@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
@@ -78,7 +80,7 @@ export default function Hero() {
             <motion.div className="mt-16 flex items-center gap-8 text-slate-400 flex-wrap" variants={item}>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 2a8 8 0 100 16A8 8 0 0012 4z"/>
+                  <path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 2a8 8 0 100 16A8 8 0 0012 4z" />
                 </svg>
                 <span className="text-sm font-medium">Cuisson au feu de bois</span>
               </div>
@@ -115,7 +117,7 @@ export default function Hero() {
           <motion.div className="absolute bottom-10 right-10 z-20 hidden lg:flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-2xl" variants={float} animate={reduce ? undefined : "animate"}>
             <div className="bg-primary rounded-full p-2 text-white">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
               </svg>
             </div>
             <div>

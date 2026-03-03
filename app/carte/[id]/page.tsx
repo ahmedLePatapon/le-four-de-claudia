@@ -115,7 +115,7 @@ export default async function PizzaDetailPage({ params }: Props) {
   const catSlug = pizza.categorie.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <div className="min-h-screen bg-[#181211]">
+    <div className="min-h-screen bg-bg-dark">
       {/* Background blobs */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]" />
@@ -123,7 +123,7 @@ export default async function PizzaDetailPage({ params }: Props) {
       </div>
 
       <main className="relative z-10 flex-1 flex flex-col pt-28 pb-16">
-        <div className="px-6 lg:px-16 xl:px-32 w-full max-w-[1600px] mx-auto">
+        <div className="px-6 lg:px-16 xl:px-32 w-full max-w-400 mx-auto">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-slate-500 text-sm mb-8">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
@@ -137,7 +137,7 @@ export default async function PizzaDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-20">
             {/* Left: Image */}
             <div className="relative w-full h-fit">
-              <div className="relative aspect-[4/5] lg:aspect-square w-full rounded-2xl overflow-hidden bg-[#231a19] shadow-2xl border border-white/5">
+              <div className="relative aspect-4/5 lg:aspect-square w-full rounded-2xl overflow-hidden bg-[#231a19] shadow-2xl border border-white/5">
                 <Image
                   src={image}
                   alt={pizza.nom}
@@ -157,13 +157,13 @@ export default async function PizzaDetailPage({ params }: Props) {
             {/* Right: Info */}
             <div className="flex flex-col justify-start pt-4">
               <div className="mb-2 flex items-center gap-2">
-                {[1,2,3,4].map((i) => (
+                {[1, 2, 3, 4].map((i) => (
                   <svg key={i} className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                   </svg>
                 ))}
                 <svg className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1v9.3z"/>
+                  <path d="M12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1v9.3z" />
                 </svg>
                 <span className="text-slate-400 text-sm ml-2">(avis clients)</span>
               </div>

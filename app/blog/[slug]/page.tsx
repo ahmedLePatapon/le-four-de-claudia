@@ -47,7 +47,7 @@ export default async function ArticlePage({ params }: Props) {
   const related = allArticles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#181211]">
+    <div className="min-h-screen bg-bg-dark">
       {/* Background blobs */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]" />
@@ -56,7 +56,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Hero */}
       <div className="relative w-full h-[60vh] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#181211] via-transparent to-black/40 z-10" />
+        <div className="absolute inset-0 bg-linear-to-t from-bg-dark via-transparent to-black/40 z-10" />
         <Image
           src={article.image}
           alt={article.titre}
@@ -168,7 +168,7 @@ export default async function ArticlePage({ params }: Props) {
         <aside className="w-full lg:w-80 shrink-0 flex flex-col gap-10">
 
           {/* Newsletter */}
-          <div className="bg-[#231b1a] p-8 rounded-2xl border border-white/5 relative overflow-hidden group">
+          <div className="bg-card-dark p-8 rounded-2xl border border-white/5 relative overflow-hidden group">
             <div className="absolute -right-6 -top-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors" />
             <h3 className="text-xl font-bold text-white mb-2 relative z-10">Rejoignez le Club</h3>
             <p className="text-sm text-slate-400 mb-6 relative z-10">Recevez nos secrets de chef et offres exclusives chaque mois.</p>
@@ -176,11 +176,11 @@ export default async function ArticlePage({ params }: Props) {
               <input
                 type="email"
                 placeholder="Votre email"
-                className="w-full bg-[#181211] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
+                className="w-full bg-bg-dark border border-slate-700 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all"
               />
               <button
                 type="submit"
-                className="w-full bg-white text-[#181211] font-bold text-sm py-3 rounded-lg hover:bg-primary hover:text-white transition-colors"
+                className="w-full bg-white text-bg-dark font-bold text-sm py-3 rounded-lg hover:bg-primary hover:text-white transition-colors"
               >
                 M&apos;inscrire
               </button>

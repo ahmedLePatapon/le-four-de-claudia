@@ -34,11 +34,10 @@ export default function BlogGrid({ articles }: BlogGridProps) {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-              active === cat
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${active === cat
                 ? "border border-primary bg-primary/10 text-primary"
                 : "border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white"
-            }`}
+              }`}
           >
             {cat}
           </button>
@@ -51,7 +50,7 @@ export default function BlogGrid({ articles }: BlogGridProps) {
           <Link
             key={article.slug}
             href={`/blog/${article.slug}`}
-            className="break-inside-avoid block group relative bg-[#231b1a] rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 shadow-xl border border-white/5"
+            className="break-inside-avoid block group relative bg-card-dark rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 shadow-xl border border-white/5"
           >
             <div className={`${ASPECT_RATIOS[i % ASPECT_RATIOS.length]} overflow-hidden relative`}>
               <Image
@@ -61,7 +60,7 @@ export default function BlogGrid({ articles }: BlogGridProps) {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-80" />
               <div className="absolute top-4 left-4">
                 <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider rounded-md border border-white/10">
                   {article.categorie}
