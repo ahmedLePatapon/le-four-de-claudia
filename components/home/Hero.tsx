@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import FireParticles from "@/components/home/FireParticles";
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -113,6 +114,7 @@ export default function Hero() {
               sizes="(max-width: 1024px) 100vw, 55vw"
             />
           </motion.div>
+          <FireParticles className="z-30" />
           {/* Floating badge */}
           <motion.div className="absolute bottom-10 right-10 z-20 hidden lg:flex items-center gap-3 bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-2xl" variants={float} animate={reduce ? undefined : "animate"}>
             <div className="bg-primary rounded-full p-2 text-white">
